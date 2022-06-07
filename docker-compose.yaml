@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    
+    image: 346246421314/image-wallet:v4
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    networks:
+      - mongo-app
+  mongo:
+    image: mongo:4.4.6
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-app
+  client-react:
+
+    image: 346246421314/react-app:latest
+    container_name: react-container
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    networks:
+      - mongo-app
+
+networks:
+    mongo-app:
+        driver: bridge
+
+volumes:
+    data-volume:
