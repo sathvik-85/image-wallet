@@ -2,9 +2,10 @@ version: '3'
 
 services:
   api:
-    
-    image: 346246421314/image-wallet:v4
+    build: ./app
     container_name: fastapi
+    volumes: 
+      - image-volume:/code/app/images
     ports:
       - "8000:8000"
     depends_on:
@@ -20,8 +21,7 @@ services:
     networks:
       - mongo-app
   client-react:
-
-    image: 346246421314/react-app:latest
+    build: ./react-app
     container_name: react-container
     depends_on:
       - api
@@ -36,3 +36,4 @@ networks:
 
 volumes:
     data-volume:
+    image-volume:
