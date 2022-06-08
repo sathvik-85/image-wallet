@@ -27,6 +27,7 @@ services:
       - "3000:3000"
     networks:
       - mongo-app
+    stdin_open: true
 
 networks:
     mongo-app:
