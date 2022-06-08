@@ -4,8 +4,6 @@ services:
   api:
     build: ./app
     container_name: fastapi
-    volumes: 
-      - image-volume:/code/app/images
     ports:
       - "8000:8000"
     depends_on:
@@ -36,4 +34,4 @@ networks:
 
 volumes:
     data-volume:
-    image-volume:
+
