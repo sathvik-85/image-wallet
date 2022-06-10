@@ -28,10 +28,12 @@ const timestamp = Date.parse(value)/1000;
 
     formData.append("files",file)
   }
+
+console.log(formData)
   
 
   
-axios.post(`http://api:3000/uploadfile?date=${timestamp}`,formData)
+axios.post(`http://localhost:8000/uploadfile?date=${timestamp}`,formData)
 
 
 }
@@ -40,7 +42,8 @@ axios.post(`http://api:3000/uploadfile?date=${timestamp}`,formData)
  
 
   useEffect(() =>{
-    fetch("http://api:3000/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
+     
+    fetch("http://localhost:8000/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
   },[fetchdata])
 
   
@@ -72,9 +75,9 @@ axios.post(`http://api:3000/uploadfile?date=${timestamp}`,formData)
       {data.map(image => {
        return (
         
-       
+            
            
-       <img src={`http://api:3000${image.path}`}  width="300px" height="300px" />
+       <img src={`http://localhost:8000${image.path}`}  width="300px" height="300px" />
        
 
      

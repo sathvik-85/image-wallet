@@ -1,4 +1,3 @@
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pymongo import MongoClient
 from fastapi import FastAPI, File, UploadFile
@@ -13,7 +12,7 @@ import glob
 import os
 from fastapi.staticfiles import StaticFiles
 from time import sleep
-
+from  fastapi.middleware.cors import CORSMiddleware 
 
 image_list= []
 
@@ -23,7 +22,7 @@ client = MongoClient("mongo",27017)
 current_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),"images")
 
 app = FastAPI()
-
+	
 image_dir = os.path.dirname("images")
 img_realpath = os.path.join(current_path,image_dir)
     
@@ -34,9 +33,9 @@ origins = ["*"]
 app.add_middleware(
         CORSMiddleware,
         allow_origins=origins,
-        allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["*"]
     )
 
 @app.get("/image-gallery")  
