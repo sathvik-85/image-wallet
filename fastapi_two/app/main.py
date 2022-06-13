@@ -42,7 +42,7 @@ app.add_middleware(
 
 @app.get("/serv")
 async def server_1():
-    return {"server":"first server"}
+    return {"server":"second server"}
 
 
 @app.get("/image-gallery")  

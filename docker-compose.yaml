@@ -10,6 +10,20 @@ services:
     networks:
       - mongo-app
     stdin_open: true
+    volumes:
+      - image-volume:/code/app/images
+  api2:
+    build: ./fastapi_two
+    ports:
+      - "8001:8000"
+    depends_on:
+      - mongo
+    networks:
+      - mongo-app
+    stdin_open: true
+    volumes:
+      - image-volume:/code/app/images
+
   mongo:
     image: mongo:4.4.6
     volumes:
@@ -28,11 +42,21 @@ services:
     networks:
       - mongo-app
     stdin_open: true
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:8080"
+
+    restart: always
+    depends_on:
+      - api
+      - api2
+    networks: 
+      - mongo-app
 
 networks:
     mongo-app:
         driver: bridge
-
 volumes:
     data-volume:
-
+    image-volume:

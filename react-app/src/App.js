@@ -14,7 +14,7 @@ function App() {
   const [data, setData] = useState([]);
   const [value, setValue] = React.useState(new Date(Date.now()));
   const [files, setFiles] = useState()
-
+ 
 
 
 const onSubmitHandler =(e) =>{
@@ -33,7 +33,7 @@ console.log(formData)
   
 
   
-axios.post(`http://localhost:8000/uploadfile?date=${timestamp}`,formData)
+axios.post(`http://localhost:8080/uploadfile?date=${timestamp}`,formData)
 
 
 }
@@ -42,13 +42,16 @@ axios.post(`http://localhost:8000/uploadfile?date=${timestamp}`,formData)
  
 
   useEffect(() =>{
-     
-    fetch("http://localhost:8000/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
+    
+    fetch("http://localhost:8080/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
   },[fetchdata])
+
+
 
   
   return (
     <>
+
     <div>
       <form onSubmit={onSubmitHandler}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -77,7 +80,7 @@ axios.post(`http://localhost:8000/uploadfile?date=${timestamp}`,formData)
         
             
            
-       <img src={`http://localhost:8000${image.path}`}  width="300px" height="300px" />
+       <img src={`http://localhost:8080${image.path}`}  width="300px" height="300px" />
        
 
      
@@ -86,6 +89,7 @@ axios.post(`http://localhost:8000/uploadfile?date=${timestamp}`,formData)
       })}
 </div>
     </div>
+
     </>
   );
 }
