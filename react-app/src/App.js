@@ -33,7 +33,7 @@ console.log(formData)
   
 
   
-axios.post(`http://${url}:8080/uploadfile?date=${timestamp}`,formData)
+axios.post(`http://localhost:8080/uploadfile?date=${timestamp}`,formData)
 
 
 }
@@ -43,7 +43,7 @@ axios.post(`http://${url}:8080/uploadfile?date=${timestamp}`,formData)
 
   useEffect(() =>{
     
-    fetch("http://${url}:8080/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
+    fetch("http://localhost:8080/image-gallery").then(data => data.json()).then(pathData => setData(pathData) )
   },[fetchdata])
 
 
@@ -80,7 +80,7 @@ axios.post(`http://${url}:8080/uploadfile?date=${timestamp}`,formData)
         
             
            
-       <img src={`http://${url}:8080${image.path}`}  width="300px" height="300px" />
+       <img src={`http://localhost:8080${image.path}`}  width="300px" height="300px" />
        
 
      
